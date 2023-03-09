@@ -58,7 +58,39 @@ formPesquisa.onsubmit = (evento) => {
 
     fetch(url)
     .then(result => result.json())
-    .then(json => console.log(json));
+    .then(json => carregaLista(json));
+}
+
+const carregaLista = (json) =>{
+    const lista = document.querySelector('div.lista');
+    lista.innerHTML = '';
+
+    if(json.Response == 'False'){
+        alert("Nenhum filme encontrado");
+        return;
+    }
+
+    json.Search.forEach(element => {
+
+        let item = document.createElement('div.card');
+        item.classList.add('item');
+
+        item.innerHTML = 
+        `<div class="card" style="width: 18rem;">
+        <img  src='${element.Poster}' class="card-img-top"/>
+        <div class="card-body">
+        <h5 class="card-title">${element.Title}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">${element.Year}</li>
+        <li class="list-group-item">${element.Genre}</li>
+        <li class="list-group-item">${element.Rated}</li>
+        </ul>
+        </div>`;
+
+        lista.appendChild(item);
+        
+    });
 }
 
 

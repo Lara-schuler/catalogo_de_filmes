@@ -7,3 +7,28 @@
 .navbar-brand img {
     height: 5vh;
 }
+
+.nav-item {
+    margin: 0 10px;
+}
+
+.form-control  {
+    width: 300px;
+}
+
+.d-flex button {
+    color: #FFF;
+    background-color: #CD5C5C;
+    border: 1px solid transparent;
+    border-radius: 0;
+} 
+main {
+    padding: 30px;
+}
+
+.lista {
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
+    padding: 20px;
+}
