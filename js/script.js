@@ -98,9 +98,10 @@ let btnBuscarFilme = document.querySelector('#btn-buscar-filme');
 
 
 btnBuscarFilme.onclick = async () => {
+    console.log("0");
     if(inputBuscarFilme.value.length > 0) {
         let filmes = new Array();
-       fetch('https://www.omdbapi.com/?&apikey=8c76fa7d&s='+inputBuscarFilme.value, {mode:"cors"})
+       fetch('https://www.omdbapi.com/?apikey=8c76fa7d&s='+inputBuscarFilme.value, {mode:"cors"})
        .then((resp) => resp.json()) 
        .then((resp) => {
             resp.Search.forEach((item) => {
@@ -111,8 +112,8 @@ btnBuscarFilme.onclick = async () => {
                     item.Year,
                     null,
                     null,
-                    item.Poster,
                     null,
+                    item.Poster,
                     null,
                     null,
                     null,
@@ -125,39 +126,6 @@ btnBuscarFilme.onclick = async () => {
     }
     return false;
 }
-
-getCard = async () => {
-    let card = document.createElement('div');
-    card.setAttribute('class','card');
-    let imgCartaz = document.createElement('img');
-    imgCartaz.setAttribute('class','card-img-topz');
-    imgCartaz.setAttribute('src', this.cartaz);
-    let cardBody = document.createElement('div');
-    cardBody.setAttribute('class','card-body');
-    hCardTitle = document.createElement('h5');
-    hCardTitle.setAttribute('class','card-title');
-    let divDetalhes = document.createElement('div');
-    divDetalhes.setAttribute('style','display:flex; justify-content:space-around;');
-    let divGenero = document.createElement('div');
-    divGenero.setAttribute('style', 'flex-grow:1;');
-    let divAnoDeProducao = document.createElement('div');
-    divAnoDeProducao.setAttribute('style', 'flex-grow:1;');
-    let divClassificacao = document.createElement('div');
-    divClassificacao.setAttribute('style', 'flex-grow:1;');
-    hCardTitle.appendChild(document.createTextNode(this.titulo));
-    divGenero.appendChild(document.createTextNode(this.genero));
-    divAnoDeProducao.appendChild(document.createTextNode(this.ano));
-    divClassificacao.appendChild(document.createTextNode(this.classificacao));
-    divDetalhes.appendChild(divGenero);
-    divDetalhes.appendChild(divAnoDeProducao);
-    divDetalhes.appendChild(divClassificacao);
-    card.appendChild(imgCartaz);
-    card.appendChild(cardBody);
-    cardBody.appendChild(hCardTitle);
-    cardBody.appendChild(divDetalhes);
-    return card;
-}
-
 let listarFilmes = async(filmes) => {
     let listaFilmes = await document.querySelector('#lista-filmes');
     listaFilmes.innerHTML = "";
@@ -165,11 +133,32 @@ let listarFilmes = async(filmes) => {
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
             listaFilmes.appendChild(await filme.getCard());
+            filme.getBtnDetalhes().onclick=()=>{
+                detalhesFilme(filme.id);
+            }
         });
     }
 }
 
+let detalhesFilme = async (id) => {
+    fetch('https://www.omdbapi.com/?apikey=8c76fa7d&i='+id)
+    .then((resp)=> resp.json())
+    .then((resp)=>{
+        console.log(resp)
+        let filme = new Filme(
+        resp.imdbID,
+        resp.Title,
+        resp.Year,
+        resp.Genre,
+        resp.Runtime,
+        resp.Plot,
+        resp.Poster,
+        resp.Director,
+        resp.Actors,
+        resp.Rated,
+        resp.imdbRating,
+        resp.btnDetalhes
+       );
 
-
-
-
+    });
+}

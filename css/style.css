@@ -15,7 +15,7 @@
 .form-control  {
     width: 300px;
 }
-
+/*
 .d-flex button {
     color: #FFF;
     background-color: #CD5C5C;
@@ -27,6 +27,13 @@ main {
 }
 
 .lista {
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
+    padding: 20px;
+}*/
+
+#lista-filmes {
     display:grid;
     grid-template-columns: auto auto auto;
     grid-gap: 30px;
