@@ -38,59 +38,6 @@ let filme = new Filme(
 
 console.log(filme);
 
-//consumindo API
-
-const formPesquisa = document.querySelector('.d-flex');
-const apikey =  '8c76fa7d';
-
-
-formPesquisa.onsubmit = (evento) => {
-    evento.preventDefault();
-
-    const pesquisa = evento.target.pesquisa.value;
-    console.log(pesquisa)
-    const url = `https://www.omdbapi.com/?s=${pesquisa}&apikey=${apikey}`;
-
-    if(pesquisa == '') {
-        alert('Preencha o campo!');
-        return;
-    }
-
-    fetch(url)
-    .then(result => result.json())
-    .then(json => carregaLista(json));
-}
-
-const carregaLista = (json) =>{
-    const lista = document.querySelector('div.lista');
-    lista.innerHTML = '';
-
-    if(json.Response == 'False'){
-        alert("Nenhum filme encontrado");
-        return;
-    }
-
-    json.Search.forEach(element => {
-
-        let item = document.createElement('div.card');
-        item.classList.add('item');
-
-        item.innerHTML = 
-        `<div class="card" style="width: 18rem;">
-        <img  src='${element.Poster}' class="card-img-top"/>
-        <div class="card-body">
-        <h5 class="card-title">${element.Title}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item">${element.Year}</li>
-        <li class="list-group-item">${element.Genre}</li>
-        <li class="list-group-item">${element.Rated}</li>
-        </ul>
-        </div>`;
-
-        lista.appendChild(item);
-        
-    });
 }*/
 
 let inputBuscarFilme = document.querySelector('#input-buscar-filme');
@@ -99,11 +46,19 @@ let btnBuscarFilme = document.querySelector('#btn-buscar-filme');
 
 btnBuscarFilme.onclick = async () => {
     console.log("0");
-    if(inputBuscarFilme.value.length > 0) {
+    if(inputBuscarFilme.value.length == '') {
+        alert('Preencha o campo!');
+        return;
+    }
+    else if(inputBuscarFilme.value.length > 0) {
         let filmes = new Array();
        fetch('https://www.omdbapi.com/?apikey=8c76fa7d&s='+inputBuscarFilme.value, {mode:"cors"})
        .then((resp) => resp.json()) 
        .then((resp) => {
+        if(resp.Response == 'False'){
+            alert("Nenhum filme encontrado");
+            return;
+        }
             resp.Search.forEach((item) => {
                 console.log(item);
                 let filme = new Filme(
@@ -124,7 +79,9 @@ btnBuscarFilme.onclick = async () => {
             listarFilmes(filmes);
        });
     }
+
     return false;
+
 }
 let listarFilmes = async(filmes) => {
     let listaFilmes = await document.querySelector('#lista-filmes');
@@ -157,7 +114,7 @@ let detalhesFilme = async (id) => {
         resp.Actors,
         resp.Rated,
         resp.imdbRating,
-        resp.btnDetalhes
+        //resp.btnDetalhes
        );
 
     });
