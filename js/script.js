@@ -85,7 +85,10 @@ btnBuscarFilme.onclick = async () => {
 }
 let listarFilmes = async(filmes) => {
     let listaFilmes = await document.querySelector('#lista-filmes');
+    listaFilmes.style.display="flex";
     listaFilmes.innerHTML = "";
+    document.querySelector("#mostrar-filme").innerHTML="";
+    document.querySelector("#mostrar-filme").style.display="none";
     console.log(listaFilmes);
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
@@ -106,16 +109,20 @@ let detalhesFilme = async (id) => {
         resp.imdbID,
         resp.Title,
         resp.Year,
-        resp.Genre,
+        resp.Genre.split(","),
         resp.Runtime,
         resp.Plot,
         resp.Poster,
         resp.Director,
-        resp.Actors,
+        resp.Actors.split(","),
         resp.Rated,
         resp.imdbRating,
         //resp.btnDetalhes
        );
+       console.log(filme);
+       document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
+       document.querySelector("#lista-filmes").style.display="none";
+       document.querySelector("#mostrar-filme").style.display="flex";
 
     });
 }

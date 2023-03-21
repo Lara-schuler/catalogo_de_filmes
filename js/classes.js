@@ -34,7 +34,7 @@ class Filme
     getCard = async () => {
         let card = document.createElement('div');
         card.setAttribute('class','card');
-        card.setAttribute('style','width: 22rem;');
+        card.setAttribute('style','width: 30rem;');
         let imgCartaz = document.createElement('img');
         imgCartaz.setAttribute('class','card-img-topz');
         imgCartaz.setAttribute('src', this.cartaz);
@@ -77,6 +77,63 @@ class Filme
 
     getBtnDetalhes = () => {
         return this.btnDetalhes
+    }
+
+    getDetalhesFilme = () => {
+        let cardDetalhes = document.createElement('div');
+    card.setAttribute('class','card ');
+    card.setAttribute('style','width: 22rem;');
+    let img = document.createElement('img');
+    img.setAttribute('class','card-img-top');
+    img.setAttribute('src', this.cartaz);
+    let cardBody = document.createElement('div');
+    cardBody.setAttribute('class','card-body');
+    let titulo = document.createElement('h5');
+    titulo.setAttribute('class','card-title');
+    let lista = document.createElement('ul');
+    lista.setAttribute('class','list-group list-group-flush');
+    let id = document.createElement('li');
+    id.setAttribute('class','list-group-item');
+    let ano = document.createElement('li');
+    ano.setAttribute('class','list-group-item');
+    let genero = document.createElement('li'); 
+    genero.setAttribute('class','list-group-item');
+    let duracao = document.createElement('li');
+    duracao.setAttribute('class','list-group-item');
+    let sinopse = document.createElement('li');
+    sinopse.setAttribute('class','list-group-item');
+    let direcao = document.createElement('li');
+    direcao.setAttribute('class','list-group-item');
+    let elenco = document.createElement('li');
+    elenco.setAttribute('class','list-group-item');
+    let classificacao = document.createElement('li');
+    classificacao.setAttribute('class','list-group-item');
+    let avaliacao = document.createElement('li');
+    avaliacao.setAttribute('class','list-group-item');
+    id.appendChild(createTextNode(this.id)); 
+    titulo.appendChild(createTextNode(this.titulo));
+    ano.appendChild(createTextNode(this.ano));
+    genero.appendChild(createTextNode(this.genero));
+    duracao.appendChild(createTextNode(this.duracao));
+    sinopse.appendChild(createTextNode(this.sinopse));
+    direcao.appendChild(createTextNode(this.direcao));
+    elenco.appendChild(createTextNode(this.elenco));
+    classificacao.appendChild(createTextNode(this.classificacao));
+    avaliacao.appendChild(createTextNode(this.avaliacao));
+    lista.appendChild(id);
+    lista.appendChild(ano);
+    lista.appendChild(genero);
+    lista.appendChild(duracao);
+    lista.appendChild(sinopse);
+    lista.appendChild(direcao);
+    lista.appendChild(elenco);
+    lista.appendChild(classificacao);
+    lista.appendChild(avaliacao);
+    cardBody.appendChild(titulo);
+    cardDetalhes.appendChild(img);
+    cardDetalhes.appendChild(cardBody);
+    cardDetalhes.appendChild(lista);
+
     }
 }
 
