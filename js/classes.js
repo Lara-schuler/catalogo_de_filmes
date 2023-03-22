@@ -30,8 +30,8 @@ class Filme {
 
     getCard = async () => {
         let card = document.createElement('div');
-        card.setAttribute('class', 'card');
-        card.setAttribute('style', 'width: 24rem;');
+        card.setAttribute('class', 'card mb-4');
+        card.setAttribute('style', 'width: 22rem;');
         let imgCartaz = document.createElement('img');
         imgCartaz.setAttribute('class', 'card-img-topz');
         imgCartaz.setAttribute('src', this.cartaz);
@@ -70,7 +70,7 @@ class Filme {
         this.btnDetalhes.setAttribute('class', 'btn btn-primary');
         this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
         this.btnDetalhes.setAttribute("id", this.id);
-        this.btnDetalhes.setAttribute("class", "btn btn-primary");
+        this.btnDetalhes.setAttribute("class", "btn btn-primary mt-3");
     }
 
     getBtnDetalhes = () => {
@@ -80,7 +80,7 @@ class Filme {
     getDetalhesFilme = () => {
         let cardDetalhes = document.createElement('div');
         cardDetalhes.setAttribute('class', 'card m-4');
-        cardDetalhes.setAttribute('style', 'max-width: 540px;');
+        cardDetalhes.setAttribute('style', 'max-width: 940px;');
         let divRow = document.createElement('div');
         divRow.setAttribute('class', 'row g-0');
         let divImg = document.createElement('div');
@@ -111,7 +111,7 @@ class Filme {
         let avaliacao = document.createElement('p');
         avaliacao.setAttribute('class', 'card-text');
         let btnSalvar = document.createElement('a');
-        btnSalvar.setAttribute('class','btn btn-primary');
+        btnSalvar.setAttribute('class','btn btn-primary mt-3');
         btnSalvar.setAttribute('onclick',`salvar(${this})`);
         titulo.appendChild(document.createTextNode(this.titulo));
         ano.appendChild(document.createTextNode(this.ano));
@@ -136,14 +136,10 @@ class Filme {
         cardBody.appendChild(avaliacao);
         cardBody.appendChild(btnSalvar);
         divConteudo.appendChild(cardBody);
-        divRow.appendChild(cardBody);
+        divRow.appendChild(divConteudo);
         cardDetalhes.appendChild(divRow);
         return cardDetalhes;
     }
-
-    
-    
-
 
 }
 
