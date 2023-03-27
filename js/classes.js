@@ -111,8 +111,12 @@ class Filme {
         let avaliacao = document.createElement('p');
         avaliacao.setAttribute('class', 'card-text');
         let btnSalvar = document.createElement('a');
-        btnSalvar.setAttribute('class','btn btn-primary mt-3');
-        btnSalvar.setAttribute('onclick',`salvar(${this})`);
+        btnSalvar.setAttribute('class','btn btn-primary m-4');
+        btnSalvar.setAttribute('id','btnSalvar');
+        let btnFechar = document.createElement('a');
+        btnFechar.setAttribute('class','btn btn-primary m-4');
+        btnFechar.setAttribute('id','btnFechar');
+        btnSalvar.setAttribute('onclick',`Salvar(${this})`);
         titulo.appendChild(document.createTextNode(this.titulo));
         ano.appendChild(document.createTextNode(this.ano));
         genero.appendChild(document.createTextNode(this.genero));
@@ -123,6 +127,7 @@ class Filme {
         classificacao.appendChild(document.createTextNode(this.classificacao));
         avaliacao.appendChild(document.createTextNode(this.avaliacao));
         btnSalvar.appendChild(document.createTextNode('Salvar'));
+        btnFechar.appendChild(document.createTextNode('Fechar'));
         divImg.appendChild(img);
         divRow.appendChild(divImg);
         cardBody.appendChild(titulo);
@@ -135,6 +140,7 @@ class Filme {
         cardBody.appendChild(classificacao);
         cardBody.appendChild(avaliacao);
         cardBody.appendChild(btnSalvar);
+        cardBody.appendChild(btnFechar);
         divConteudo.appendChild(cardBody);
         divRow.appendChild(divConteudo);
         cardDetalhes.appendChild(divRow);
