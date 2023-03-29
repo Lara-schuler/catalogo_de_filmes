@@ -1,44 +1,3 @@
-/*let ator = new Ator(1, "JOHN WAYNE");
-console.log(ator);
-
-let diretor = new Diretor(1,"Alfred Hitchock");
-console.log(diretor);
-console.log("");
-
-let direcao = [
-    new Diretor(1,"Lana Wachowski"),
-    new Diretor(2,"Lili Wachowski"),
-];
-
-let elenco = [
-    new Ator(1, "Keanu Reeves"),
-    new Ator(2, "Carrie-Anne Moss"),
-    new Ator(3, "Laurence Fishburne"),
-    new Ator(4,"Joe Pantoliano"),
-    new Ator(5, "Hugo Weaving"),
-    new Ator(6, "Antony Ray Parker"),
-]
-
-let sinopse = "Um jovem programador é atormnetado por estranhos pesaelos nos quais sempre está resolvendo bugs";
-let cartaz = "https://www.radiorock.com.br/wp-content/uploads/2019/08/matrix.jpg";
-
-let filme = new Filme(
-    1,
-    "Matrix",
-    1999,
-    102,
-    sinopse,
-    cartaz,
-    direcao,
-    elenco,
-    14,
-    null
-    
-);
-
-console.log(filme);
-
-}*/
 
 let inputBuscarFilme = document.querySelector('#input-buscar-filme');
 let btnBuscarFilme = document.querySelector('#btn-buscar-filme');
@@ -83,6 +42,7 @@ btnBuscarFilme.onclick = async () => {
     return false;
 
 }
+
 let listarFilmes = async (filmes) => {
     let listaFilmes = await document.querySelector('#lista-filmes');
     listaFilmes.style.display = "flex";
@@ -131,49 +91,68 @@ let detalhesFilme = async (id) => {
             document.querySelector("#btnSalvar").onclick = () => {
                 salvarFilme(filme)
             }
-
-            //adicionar eventos para navegação
-
-            let navFavoritos = document.querySelector('#nav-favoritos');
-            navFavoritos.onclick = () => {
-                listarFavoritos();
+            document.querySelector("#btnRemover").onclick = () => {
+                removerLocalStorage(filme);
             }
 
             document.querySelector("#lista-filmes").style.display = "none";
             document.querySelector("#mostrar-filme").style.display = "flex";
 
-            let salvarFilme = (filme) => {
-                let filmesString = localStorage.getItem('filmesFavoritos');
-                let filmes = JSON.parse(filmesString);
-                filmes.push(filme)
-                filmes=JSON.stringify(filmes);
-                localStorage.setItem('filmesFavoritos', filmes);
-                
-            }
-
-            //ler local storage
-            let filmesFavoritos = localStorage.getItem('filmesFavoritos');
-            filmesFavoritos = JSON.parse(filmesFavoritos);
-            let filmes = new Array();
-            filmesFavoritos.forEach( (item) => {
-                let filme = new Filme(
-                    item.id,
-                    item.titulo,
-                    item.ano,
-                    item.genero,
-                    item.duracao,
-                    item.sinopse,
-                    item.cartaz,
-                    item.direcao,
-                    item.elenco,
-                    item.classificacao,
-                    item.avaliacao
-                );
-                filmes.push(filme);
-            });
-
-            listarFilmes(filmes);   
-
         });
+
+
+
+}
+
+let navFavoritos = document.querySelector('#nav-favoritos');
+navFavoritos.onclick = () => {
+    listarFavoritos();
+}
+
+let listarFavoritos = () => {
+    //ler local storage
+    let filmesFavoritos = localStorage.getItem('filmesFavoritos');
+    filmesFavoritos = JSON.parse(filmesFavoritos);
+    let filmes = new Array();
+    filmesFavoritos.forEach((item) => {
+        let filme = new Filme(
+            item.id,
+            item.titulo,
+            item.ano,
+            item.genero,
+            item.duracao,
+            item.sinopse,
+            item.cartaz,
+            item.direcao,
+            item.elenco,
+            item.classificacao,
+            item.avaliacao
+        );
+        filmes.push(filme);
+    });
+
+    listarFilmes(filmes);
+
+
+}
+
+let salvarFilme = (filme) => {
+    //localStorage.setItem("filme","La hora fría")
+    let filmesString = localStorage.getItem('filmesFavoritos');
+    console.log()
+    let filmes = null;
+    if (filmesString && filmesString != 'null') {
+        filmes = JSON.parse(filmesString);
+        console.log(filmes)
+        filmes.push(filme)
+    } else {
+        filmes = [filme];
+    }
+
+    localStorage.setItem('filmesFavoritos', JSON.stringify(filmes));
+}
+
+let removerLocalStorage = (filme) => {
+    localStorage.removeItem("filmesFavoritos");
 
 }
