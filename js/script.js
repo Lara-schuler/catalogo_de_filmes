@@ -104,10 +104,23 @@ let detalhesFilme = async (id) => {
 
 }
 
+let inicio = document.querySelector('#inicio');
+inicio.onclick = () => {
+    document.querySelector("#lista-filmes").style.display = "none";
+    document.querySelector("#mostrar-filme").style.display = "none";
+}
+
 let navFavoritos = document.querySelector('#nav-favoritos');
 navFavoritos.onclick = () => {
     listarFavoritos();
 }
+/*let editar = document.querySelector("#nav-editar");
+editar.onclick = () => {
+                document.querySelector('#lista-filmes').style.display = "none";
+                document.querySelector("#mostrar-filme").innerHTML = "";
+                document.querySelector("#mostrar-filme").style.display = "none";
+                document.querySelector("#form-filme").style.display = "flex";
+            }*/
 
 let listarFavoritos = () => {
     //ler local storage
@@ -154,5 +167,4 @@ let salvarFilme = (filme) => {
 
 let removerLocalStorage = (filme) => {
     localStorage.removeItem("filmesFavoritos");
-
 }

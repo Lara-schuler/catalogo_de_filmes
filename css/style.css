@@ -5,39 +5,63 @@
 }
 
 .navbar-brand img {
-    height: 5vh;
+    height: 6vh;
+}
+
+.navbar {
+    padding: 1rem;
+    border-bottom: 2px solid #CDC5BF;
+    background-color: #CCC;
+}
+
+.navbar .nav-item a {
+    color: #212529;
 }
 
 .nav-item {
     margin: 0 10px;
 }
 
-.form-control  {
-    width: 300px;
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 10px 25px;
+    font-weight: bold;
 }
-/*
-.d-flex button {
+
+.navbar .nav-item .btn {
+    color: #FFF;
+    background-color: #f03e3e;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+.form-control  {
+    width: 250px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 10px 25px;
+    font-weight: bold;
+}
+
+.d-flex button, .btn.btn-primary{
     color: #FFF;
     background-color: #CD5C5C;
     border: 1px solid transparent;
     border-radius: 0;
 } 
-main {
-    padding: 30px;
+#btn-buscar-filme:hover, .btn.btn-primary:hover{
+    background-color: #FFF;
+    color: #f03e3e;
+    border-color: #f03e3e;
 }
 
-.lista {
-    display:grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 30px;
-    padding: 20px;
-}*/
+.card {
+    border: 1px solid #CCC; 
+    border-radius: 0;
+}
+
 
 #lista-filmes {
-    /*display:grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 30px;
-    padding: 20px;*/
     flex-wrap: wrap; 
     display: flex;
     justify-content: space-around;

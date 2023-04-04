@@ -26,6 +26,7 @@ class Filme {
         this.classificacao = classificacao;
         this.avaliacao = avaliacao;
         this.btnDetalhes = btnDetalhes
+        this.favorito = false;
     }
 
     getCard = async () => {
@@ -73,6 +74,18 @@ class Filme {
         this.btnDetalhes.setAttribute("class", "btn btn-primary mt-3");
     }
 
+    setBtnRemover = () => {
+        this.btnRemover = document.createElement('button');
+        this.btnRemover.setAttribute('class', 'btn btn-primary bi bi-hand-thumbs-down-fill m-4');
+        //this.btnRemover.appendChild(document.createTextNode("Desfavoritar"));
+        this.btnRemover.setAttribute("id", "btnRemover");
+        //this.btnRemover.setAttribute("class", "btn btn-primary m-4");
+    }
+
+    getBtnRemover = () => {
+        return this.btnRemover
+    }
+
     getBtnDetalhes = () => {
         return this.btnDetalhes
     }
@@ -111,7 +124,7 @@ class Filme {
         let avaliacao = document.createElement('p');
         avaliacao.setAttribute('class', 'card-text');
         let btnSalvar = document.createElement('a');
-        btnSalvar.setAttribute('class','btn btn-primary m-4');
+        btnSalvar.setAttribute('class','btn btn-primary bi bi-hand-thumbs-up-fill m-4');
         btnSalvar.setAttribute('id','btnSalvar');
         let btnFechar = document.createElement('a');
         btnFechar.setAttribute('class','btn btn-primary m-4');
@@ -126,8 +139,8 @@ class Filme {
         elenco.appendChild(document.createTextNode(this.elenco));
         classificacao.appendChild(document.createTextNode(this.classificacao));
         avaliacao.appendChild(document.createTextNode(this.avaliacao));
-        btnSalvar.appendChild(document.createTextNode('Salvar'));
-        btnFechar.appendChild(document.createTextNode('Fechar'));
+        //btnSalvar.appendChild(document.createTextNode('Salvar'));
+        btnFechar.appendChild(document.createTextNode('Voltar'));
         divImg.appendChild(img);
         divRow.appendChild(divImg);
         cardBody.appendChild(titulo);
@@ -144,6 +157,12 @@ class Filme {
         divConteudo.appendChild(cardBody);
         divRow.appendChild(divConteudo);
         cardDetalhes.appendChild(divRow);
+
+        //if (this.filmesFavoritos) {
+            this.setBtnRemover();
+            cardBody.appendChild(this.getBtnRemover());
+        //}
+
         return cardDetalhes;
     }
 
